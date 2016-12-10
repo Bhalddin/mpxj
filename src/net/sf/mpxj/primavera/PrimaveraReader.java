@@ -47,6 +47,7 @@ import net.sf.mpxj.DateRange;
 import net.sf.mpxj.Day;
 import net.sf.mpxj.DayType;
 import net.sf.mpxj.Duration;
+import net.sf.mpxj.EpsField;
 import net.sf.mpxj.EventManager;
 import net.sf.mpxj.FieldContainer;
 import net.sf.mpxj.FieldType;
@@ -1205,6 +1206,29 @@ final class PrimaveraReader
       map.put(ResourceField.TYPE, "rsrc_type");
       map.put(ResourceField.INITIALS, "rsrc_short_name");
       map.put(ResourceField.PARENT_ID, "parent_rsrc_id");
+
+      return map;
+   }
+
+   /**
+    * Retrieve the default mapping between MPXJ task fields and Primavera wbs field names.
+    *
+    * @return mapping
+    */
+   public static Map<FieldType, String> getDefaultEpsFieldMap()
+   {
+      Map<FieldType, String> map = new LinkedHashMap<FieldType, String>();
+
+      map.put(EpsField.WBS_ID, "wbs_id");
+      map.put(EpsField.PARENT_WBS_ID, "parent_wbs_id");
+      map.put(EpsField.GUID, "guid");
+      map.put(EpsField.WBS_NAME, "wbs_name");
+      map.put(EpsField.ORIG_COST, "orig_cost");
+      map.put(EpsField.INDEP_REMAIN_TOTAL_COST, "indep_remain_total_cost");
+      map.put(EpsField.INDEP_REMAIN_WORK_QTY, "indep_remain_work_qty");
+      map.put(EpsField.ANTICIP_START_DATE, "anticip_start_date");
+      map.put(EpsField.ANTICIP_END_DATE, "anticip_end_date");
+      map.put(EpsField.WBS_SHORT_NAME, "wbs_short_name");
 
       return map;
    }

@@ -39,6 +39,8 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import net.sf.mpxj.Day;
+import net.sf.mpxj.Eps;
+import net.sf.mpxj.FieldContainer;
 import net.sf.mpxj.FieldType;
 import net.sf.mpxj.MPXJException;
 import net.sf.mpxj.ProjectFile;
@@ -92,6 +94,121 @@ public final class PrimaveraDatabaseReader implements ProjectReader
       catch (SQLException ex)
       {
          throw new MPXJException(MPXJException.READ_ERROR, ex);
+      }
+   }
+
+   /**
+    * Convenience method which allows to browse all project in the database to
+    * select a projectID. you can use this method in a browser
+    */
+   public Map<Integer, Eps> listEPS() throws MPXJException
+   {
+      try
+      {
+         Map<Integer, Eps> result = new HashMap<Integer, Eps>();
+
+         List<Row> rows = getRows("select distinct pw.* FROM " + m_schema + "projwbs pw, " + m_schema + "PROJECT prj WHERE pw.proj_node_flag='Y' AND pw.status_code <> 'WS_Template' AND pw.proj_id = prj.proj_id and prj.orig_proj_id is NULL ORDER BY wbs_id");
+         for (Row row : rows)
+         {
+            Integer id = row.getInteger("wbs_id");
+            Eps eps = processEPS(row);
+            result.put(id, eps);
+         }
+         return result;
+      }
+      catch (SQLException ex)
+      {
+         throw new MPXJException(MPXJException.READ_ERROR, ex);
+
+      }
+   }
+
+   public final List<Eps> processEPS(List<Row> rows)
+   {
+      List<Eps> list = new ArrayList<Eps>();
+      for (Row row : rows)
+      {
+         Eps eps = new Eps(null);
+         processFields(m_EpsFields, row, eps);
+         list.add(eps);
+      }
+      return list;
+   }
+
+   public final Eps processEPS(Row row)
+   {
+
+      Eps eps = new Eps(null);
+      processFields(m_EpsFields, row, eps);
+
+      return eps;
+   }
+
+   /**
+    * Generic method to extract Primavera fields and assign to MPXJ fields.
+    *
+    * @param map map of MPXJ field types and Primavera field names
+    * @param row Primavera data container
+    * @param container MPXJ data contain
+    */
+   private void processFields(Map<FieldType, String> map, Row row, FieldContainer container)
+   {
+      for (Map.Entry<FieldType, String> entry : map.entrySet())
+      {
+         FieldType field = entry.getKey();
+         String name = entry.getValue();
+
+         Object value;
+         switch (field.getDataType())
+         {
+            case INTEGER:
+            {
+               value = row.getInteger(name);
+               break;
+            }
+
+            case BOOLEAN:
+            {
+               value = Boolean.valueOf(row.getBoolean(name));
+               break;
+            }
+
+            case DATE:
+            {
+               value = row.getDate(name);
+               break;
+            }
+
+            case CURRENCY:
+            case NUMERIC:
+            case PERCENTAGE:
+            {
+               value = row.getDouble(name);
+               break;
+            }
+
+            case DELAY:
+            case WORK:
+            case DURATION:
+            {
+               value = row.getDuration(name);
+               break;
+            }
+
+            case GUID:
+            {
+               value = row.getUUID(name);
+               break;
+            }
+
+            default:
+            {
+               value = row.getString(name);
+               break;
+            }
+         }
+
+         container.set(field, value);
       }
    }
 
@@ -592,6 +709,7 @@ public final class PrimaveraDatabaseReader implements ProjectReader
 
    private Map<FieldType, String> m_resourceFields = PrimaveraReader.getDefaultResourceFieldMap();
    private Map<FieldType, String> m_wbsFields = PrimaveraReader.getDefaultWbsFieldMap();
+   private Map<FieldType, String> m_EpsFields = PrimaveraReader.getDefaultEpsFieldMap();
    private Map<FieldType, String> m_taskFields = PrimaveraReader.getDefaultTaskFieldMap();
    private Map<FieldType, String> m_assignmentFields = PrimaveraReader.getDefaultAssignmentFieldMap();
    private Map<FieldType, String> m_aliases = PrimaveraReader.getDefaultAliases();

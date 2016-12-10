@@ -58,12 +58,14 @@ public final class LocaleData extends ListResourceBundle
    public static final String ASSIGNMENT_COLUMNS = "ASSIGNMENT_COLUMNS";
    public static final String CONSTRAINT_COLUMNS = "CONSTRAINT_COLUMNS";
    public static final String PROJECT_COLUMNS = "PROJECT_COLUMNS";
+   public static final String EPS_COLUMNS = "EPS_COLUMNS";
 
    private static final String[] RESOURCE_COLUMNS_ARRAY = new String[ResourceField.MAX_VALUE];
    private static final String[] TASK_COLUMNS_ARRAY = new String[TaskField.MAX_VALUE];
    private static final String[] ASSIGNMENT_COLUMNS_ARRAY = new String[AssignmentField.MAX_VALUE];
    private static final String[] CONSTRAINT_COLUMNS_ARRAY = new String[ConstraintField.MAX_VALUE];
    private static final String[] PROJECT_COLUMNS_ARRAY = new String[ProjectField.MAX_VALUE];
+   private static final String[] EPS_COLUMNS_ARRAY = new String[EpsField.MAX_VALUE];
 
    static
    {
@@ -2173,6 +2175,46 @@ public final class LocaleData extends ListResourceBundle
       CONSTRAINT_COLUMNS_ARRAY[ConstraintField.UNIQUE_ID.getValue()] = "Unique ID";
       CONSTRAINT_COLUMNS_ARRAY[ConstraintField.TASK1.getValue()] = "Task 1";
       CONSTRAINT_COLUMNS_ARRAY[ConstraintField.TASK2.getValue()] = "Task 2";
+
+      EPS_COLUMNS_ARRAY[EpsField.WBS_ID.getValue()] = "WBS ID";
+      EPS_COLUMNS_ARRAY[EpsField.PROJ_ID.getValue()] = "PROJ ID";
+      EPS_COLUMNS_ARRAY[EpsField.OBS_ID.getValue()] = "OBS ID";
+      EPS_COLUMNS_ARRAY[EpsField.SEQ_NUM.getValue()] = "SEQ NUM";
+      EPS_COLUMNS_ARRAY[EpsField.PHASE_ID.getValue()] = "PHASE ID";
+      EPS_COLUMNS_ARRAY[EpsField.PARENT_WBS_ID.getValue()] = "PARENT WBS ID";
+      EPS_COLUMNS_ARRAY[EpsField.EV_USER_PCT.getValue()] = "EV USER PCT";
+      EPS_COLUMNS_ARRAY[EpsField.RESP_TEAM_ID.getValue()] = "RESP TEAM ID";
+      EPS_COLUMNS_ARRAY[EpsField.ITERATION_ID.getValue()] = "ITERATION ID";
+      EPS_COLUMNS_ARRAY[EpsField.STATUS_REVIEWER.getValue()] = "STATUS REVIEWER";
+      EPS_COLUMNS_ARRAY[EpsField.DELETE_SESSION_ID.getValue()] = "DELETE SESSION ID";
+      EPS_COLUMNS_ARRAY[EpsField.DELETE_DATE.getValue()] = "DELETE DATE";
+      EPS_COLUMNS_ARRAY[EpsField.CREATE_DATE.getValue()] = "CREATE DATE";
+      EPS_COLUMNS_ARRAY[EpsField.UPDATE_DATE.getValue()] = "UPDATE DATE";
+      EPS_COLUMNS_ARRAY[EpsField.ANTICIP_START_DATE.getValue()] = "ANTICIP START DATE";
+      EPS_COLUMNS_ARRAY[EpsField.ANTICIP_END_DATE.getValue()] = "ANTICIP END DATE";
+      EPS_COLUMNS_ARRAY[EpsField.ORIGINAL_QTY.getValue()] = "ORIGINAL QTY";
+      EPS_COLUMNS_ARRAY[EpsField.RQMT_REM_QTY.getValue()] = "RQMT REM QTY";
+      EPS_COLUMNS_ARRAY[EpsField.EV_ETC_USER_VALUE.getValue()] = "EV ETC USER VALUE";
+      EPS_COLUMNS_ARRAY[EpsField.ORIG_COST.getValue()] = "ORIG COST";
+      EPS_COLUMNS_ARRAY[EpsField.INDEP_REMAIN_TOTAL_COST.getValue()] = "INDEP REMAIN TOTAL COST";
+      EPS_COLUMNS_ARRAY[EpsField.ANN_DSCNT_RATE_PCT.getValue()] = "ANN DSCNT RATE PCT";
+      EPS_COLUMNS_ARRAY[EpsField.EST_WT.getValue()] = "EST WT";
+      EPS_COLUMNS_ARRAY[EpsField.INDEP_REMAIN_WORK_QTY.getValue()] = "INDEP REMAIN WORK QTY";
+      EPS_COLUMNS_ARRAY[EpsField.PROJ_NODE_FLAG.getValue()] = "PROJ NODE FLAG";
+      EPS_COLUMNS_ARRAY[EpsField.SUM_DATA_FLAG.getValue()] = "SUM DATA FLAG";
+      EPS_COLUMNS_ARRAY[EpsField.STATUS_CODE.getValue()] = "STATUS CODE";
+      EPS_COLUMNS_ARRAY[EpsField.WBS_SHORT_NAME.getValue()] = "WBS SHORT NAME";
+      EPS_COLUMNS_ARRAY[EpsField.WBS_NAME.getValue()] = "WBS NAME";
+      EPS_COLUMNS_ARRAY[EpsField.DSCNT_PERIOD_TYPE.getValue()] = "DSCNT PERIOD TYPE";
+      EPS_COLUMNS_ARRAY[EpsField.INTG_TYPE.getValue()] = "INTG TYPE";
+      EPS_COLUMNS_ARRAY[EpsField.UPDATE_USER.getValue()] = "UPDATE USER";
+      EPS_COLUMNS_ARRAY[EpsField.CREATE_USER.getValue()] = "CREATE USER";
+      EPS_COLUMNS_ARRAY[EpsField.EV_COMPUTE_TYPE.getValue()] = "EV COMPUTE TYPE";
+      EPS_COLUMNS_ARRAY[EpsField.EV_ETC_COMPUTE_TYPE.getValue()] = "EV ETC COMPUTE TYPE";
+      EPS_COLUMNS_ARRAY[EpsField.GUID.getValue()] = "GUID";
+      EPS_COLUMNS_ARRAY[EpsField.TMPL_GUID.getValue()] = "TMPL GUID";
+      EPS_COLUMNS_ARRAY[EpsField.START.getValue()] = "Start";
+      EPS_COLUMNS_ARRAY[EpsField.FINISH.getValue()] = "Finish";
    }
 
    private static final Object[][] RESOURCES =

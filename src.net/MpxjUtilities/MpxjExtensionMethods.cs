@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -140,6 +141,47 @@ namespace net.sf.mpxj.MpxjUtilities
         public static double? ToNullableDouble(this java.lang.Number n)
         {
             return n == null ? (double?)null : n.doubleValue();
+        }
+        /// <summary>
+        /// Converts a map to Dictionary
+        /// </summary>
+        /// <typeparam name="K">the type of keys maintained by this map</typeparam>
+        /// <typeparam name="V">the type of mapped values</typeparam>
+        /// <param name="map">the map instance</param>
+        /// <returns>Dictionary(of k,v)</k></returns>
+        public static Dictionary<K, V> ToDictionary<K, V>(this java.util.Map map)
+        {
+            var dict = new Dictionary<K, V>();
+            var iterator = map.keySet().iterator();
+            while (iterator.hasNext())
+            {
+                var key = (K)iterator.next();
+                dict.Add(key, (V)map.get(key));
+            }
+            return dict;
+        }
+        /// <summary>
+        /// Converts a map to a datatable
+        /// </summary>
+        /// <param name="map">the map instance</param>
+        /// <returns>system.data.datatable object</returns>
+        public static DataTable ToDataTabe(this java.util.Map map)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("id", typeof(string));
+            dt.Columns.Add("ProjectID", typeof(string));
+
+
+            var iterator = map.keySet().iterator();
+            while (iterator.hasNext())
+            {
+                DataRow r = dt.NewRow();
+                var o = iterator.next();
+                r["id"] = o;
+                r["ProjectID"] = map.get(o);
+                dt.Rows.Add(r);
+            }
+            return dt;
         }
 
         private const long DATE_EPOCH_TICKS = 621355968000000000;
