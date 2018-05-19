@@ -107,7 +107,7 @@ public final class PrimaveraDatabaseReader implements ProjectReader
       {
          Map<Integer, Eps> result = new HashMap<Integer, Eps>();
 
-         List<Row> rows = getRows("select distinct pw.* FROM " + m_schema + "projwbs pw, " + m_schema + "PROJECT prj WHERE pw.proj_node_flag='Y' AND pw.status_code <> 'WS_Template' AND pw.proj_id = prj.proj_id and prj.orig_proj_id is NULL ORDER BY wbs_id");
+         List<Row> rows = getRows("select distinct pw.*,prj.last_recalc_date,prj.plan_start_date,prj.plan_end_date,prj.scd_end_date FROM " + m_schema + "projwbs pw, " + m_schema + "PROJECT prj WHERE pw.proj_node_flag='Y' AND pw.status_code <> 'WS_Template' AND pw.proj_id = prj.proj_id and prj.orig_proj_id is NULL ORDER BY wbs_id");
          for (Row row : rows)
          {
             Integer id = row.getInteger("wbs_id");

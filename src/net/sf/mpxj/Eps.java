@@ -216,6 +216,11 @@ public class Eps implements ChildEpsContainer, FieldContainer
       return (Date) getCachedValue(EpsField.FINISH);
    }
 
+   public Number getProjectID()
+   {
+      return (Number) getCachedValue(EpsField.PROJ_ID);
+   }
+
    /* (non-Javadoc)
     * @see net.sf.mpxj.primavera.ChildEpsContainer#getCildEPSs()
     */

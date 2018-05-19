@@ -53,6 +53,7 @@ public enum EpsField implements FieldType
    UPDATE_USER(DataType.STRING),
    SUMMARY(DataType.BOOLEAN),
    OUTLINE_LEVEL(DataType.SHORT),
+   LAST_RECALC_DATE(DataType.DATE),
    FINISH(DataType.DATE);
 
    /**

@@ -63,7 +63,8 @@ public class PrimaveraTester
             System.out.println(entry.getValue().getCachedValue(EpsField.WBS_SHORT_NAME));
             System.out.println(entry.getValue().getCachedValue(EpsField.WBS_ID));
             System.out.println(entry.getValue().getCachedValue(EpsField.PARENT_WBS_ID));
-
+            System.out.println(entry.getValue().getCachedValue(EpsField.START));
+            System.out.println(entry.getValue().getCachedValue(EpsField.FINISH));
          }
 
       }

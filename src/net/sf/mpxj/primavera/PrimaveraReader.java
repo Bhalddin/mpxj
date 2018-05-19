@@ -1211,7 +1211,7 @@ final class PrimaveraReader
    }
 
    /**
-    * Retrieve the default mapping between MPXJ task fields and Primavera wbs field names.
+    * Retrieve the default mapping between MPXJ task fields and Primavera Eps field names.
     *
     * @return mapping
     */
@@ -1229,7 +1229,10 @@ final class PrimaveraReader
       map.put(EpsField.ANTICIP_START_DATE, "anticip_start_date");
       map.put(EpsField.ANTICIP_END_DATE, "anticip_end_date");
       map.put(EpsField.WBS_SHORT_NAME, "wbs_short_name");
-
+      map.put(EpsField.START, "plan_start_date");
+      map.put(EpsField.FINISH, "scd_end_date");
+      map.put(EpsField.LAST_RECALC_DATE, "last_recalc_date");
+      map.put(EpsField.PROJ_ID, "proj_id");
       return map;
    }
 
